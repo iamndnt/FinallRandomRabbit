@@ -3,15 +3,12 @@ package myapp.com.app200;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import java.util.Random;
 
-import myapp.com.app200.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,67 +16,37 @@ public class MainActivity extends AppCompatActivity {
     Button mainbut;
 
 
-    int pos=0;
+    int count=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         thamchieu();
-        final float x=end.getX();
-        final float y=end.getY();
 
         mainbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainbut.setClickable(false);
-                Random random = new Random();
-                int num= random.ints(1, 5).findFirst().getAsInt();
+                count++;
+                if(count%2==1) {
+                    Random random = new Random();
+                    int num = random.ints(1, 5).findFirst().getAsInt();
 
-                if(num==1)
-                {
-                    xuly1();
-                }
-                else if(num==2)
-                {
-                    xuly2();
-                }
-                else if(num==3)
-                {
-                    xuly3();
+                    if (num == 1) {
+                        xuly1();
+                    } else if (num == 2) {
+                        xuly2();
+                    } else if (num == 3) {
+                        xuly3();
+                    } else
+                        xuly4();
                 }
                 else
-                    xuly4();
+                    xulyvebandau();
             }
         });
 
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                xulyvebandau();
-            }
-        });
 
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                xulyvebandau();
-            }
-        });
-
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                xulyvebandau();
-            }
-        });
-
-        btn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                xulyvebandau();
-            }
-        });
 
     }
 
@@ -93,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();
 
-        mainbut.setClickable(true);
     }
 
     void xuly1()
